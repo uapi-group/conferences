@@ -47,7 +47,7 @@
   * WIP: improving sd-boot UX
   * WIP: integrating UKI with brtfs snapshots
   * MicroOS switched to pcrlock-only, dropping support of pcr-oracle (signed policy)
-* Archlinux
+* Arch Linux
   * Work on VOA adoption
     * WIP: [Web of Trust support for OpenPGP](https://gitlab.archlinux.org/archlinux/alpm/voa/-/work_items/20)
     * WIP: [Signify as crypto backend](https://gitlab.archlinux.org/archlinux/alpm/voa/-/work_items/24)
@@ -130,7 +130,7 @@
   * U-boot uses FIT image (flattened image tree, a device-tree derivation)
   * But PE is so simple! Just do it! (™)
     * Authenticode is not bad, not great
-    * Openssl does the heavy lifting, X.509 ecosystem is well supported if not pretty
+    * OpenSSL does the heavy lifting, X.509 ecosystem is well supported if not pretty
   * Someone implemented reading [PE from some bootloader in MBR](https://github.com/nkraetzschmar/bootloader) and presented at ASG 2025
     * ASG talk: ["One Boot Config to Rule Them All: Bringing UAPI Boot Specification to Legacy BIOS"](https://www.youtube.com/watch?v=x5vKCc8fVJI)
   * Kernel in a UKI is callable in "classic bios" mode (i.e., avoid EFI stub/entry point)
@@ -149,7 +149,7 @@
 * Graphical systemd-boot?
   * Feedback for users when rollbacks need to be selected is that the GUI could use colors or emojis
   * Separate component that has fancy graphic?
-  * Hi DPI screens have a lot of issues
+  * HiDPI screens have a lot of issues
   * Use EFI protocols to implement a terminal emulator
   * APIs for blessing boots available to make a better job from the OS of selecting rollbacks
   * Text stuff should really be improved regardless, as often it's hard to read, with the pager and so on
@@ -253,7 +253,7 @@
     * WoT: describe what the roots are, how many levels to allow
     * Need a policy enforcement on top of all of this, X.509 embeds this in the certs themselves
     * Metadata mostly specific to consumer of the data
-    * Openpgp does not support embedded a lot of this into the format
+    * OpenPGP does not support embedded a lot of this into the format
     * End users want to customize some of these parameters
   * systemd VOA parser is generic
 * pcrlock: support more than 8 variants (PolicyOR limitation)
