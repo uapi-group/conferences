@@ -1178,7 +1178,7 @@ The following parties were present at the summit (in no particular order):&lt;/p
 &lt;li>MicroOS switched to pcrlock-only, dropping support of pcr-oracle (signed policy)&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>Archlinux
+&lt;li>Arch Linux
 &lt;ul>
 &lt;li>Work on VOA adoption
 &lt;ul>
@@ -1314,7 +1314,7 @@ The following parties were present at the summit (in no particular order):&lt;/p
 &lt;li>But PE is so simple! Just do it! (™)
 &lt;ul>
 &lt;li>Authenticode is not bad, not great&lt;/li>
-&lt;li>Openssl does the heavy lifting, X.509 ecosystem is well supported if not pretty&lt;/li>
+&lt;li>OpenSSL does the heavy lifting, X.509 ecosystem is well supported if not pretty&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;li>Someone implemented reading &lt;a href="https://github.com/nkraetzschmar/bootloader">PE from some bootloader in MBR&lt;/a> and presented at ASG 2025
@@ -1347,7 +1347,7 @@ The following parties were present at the summit (in no particular order):&lt;/p
 &lt;ul>
 &lt;li>Feedback for users when rollbacks need to be selected is that the GUI could use colors or emojis&lt;/li>
 &lt;li>Separate component that has fancy graphic?&lt;/li>
-&lt;li>Hi DPI screens have a lot of issues&lt;/li>
+&lt;li>HiDPI screens have a lot of issues&lt;/li>
 &lt;li>Use EFI protocols to implement a terminal emulator&lt;/li>
 &lt;li>APIs for blessing boots available to make a better job from the OS of selecting rollbacks&lt;/li>
 &lt;li>Text stuff should really be improved regardless, as often it&amp;rsquo;s hard to read, with the pager and so on&lt;/li>
@@ -1518,7 +1518,7 @@ The following parties were present at the summit (in no particular order):&lt;/p
 &lt;li>WoT: describe what the roots are, how many levels to allow&lt;/li>
 &lt;li>Need a policy enforcement on top of all of this, X.509 embeds this in the certs themselves&lt;/li>
 &lt;li>Metadata mostly specific to consumer of the data&lt;/li>
-&lt;li>Openpgp does not support embedded a lot of this into the format&lt;/li>
+&lt;li>OpenPGP does not support embedded a lot of this into the format&lt;/li>
 &lt;li>End users want to customize some of these parameters&lt;/li>
 &lt;/ul>
 &lt;/li>
