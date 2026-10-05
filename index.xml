@@ -1172,4 +1172,557 @@ The following parties were present at the summit (in no particular order):&lt;/p
 &lt;li>Lennart: Lsm-bpf policies implemented by systemd
 &lt;ul>
 &lt;li>
-&lt;p>How to forbid abstract UNIX sockets in service units&lt;/p></description></item></channel></rss>
+&lt;p>How to forbid abstract UNIX sockets in service units&lt;/p></description></item><item><title/><link>https://uapi-group.org/conferences/minutes/2026-09-29__image-based-linux-summit/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://uapi-group.org/conferences/minutes/2026-09-29__image-based-linux-summit/</guid><description>&lt;h1 id="image-based-linux-summit-berlin-september-29th-2026">Image-Based Linux Summit Berlin September 29th 2026&lt;a class="anchor" href="#image-based-linux-summit-berlin-september-29th-2026">#&lt;/a>&lt;/h1>
+&lt;p>🖼️ 🐧 🗻 🥙&lt;/p>
+&lt;h1 id="attendees-projects">Attendee&amp;rsquo;s projects&lt;a class="anchor" href="#attendees-projects">#&lt;/a>&lt;/h1>
+&lt;ul>
+&lt;li>systemd&lt;/li>
+&lt;li>mkosi&lt;/li>
+&lt;li>SUSE: MicroOS/Tumbleweed&lt;/li>
+&lt;li>Fedora: &lt;a href="https://docs.fedoraproject.org/en-US/bootc/getting-started/">Bootc&lt;/a>, &lt;a href="https://fedoraproject.org/coreos/">CoreOS&lt;/a>, &lt;a href="https://fedoraproject.org/atomic-desktops/">Atomic Desktops (Silverblue, Kinoite)&lt;/a>&lt;/li>
+&lt;li>Microsoft: confidential containers, &lt;a href="https://www.flatcar.org/">Flatcar&lt;/a>, Azure Boost&lt;/li>
+&lt;li>NixOS: systemd-{vmspawn,machined,repart,stub,boot,cryptenroll}, &lt;a href="https://snix.dev/about/">snix-store&lt;/a>, &lt;a href="https://github.com/nix-community/lanzaboote">Lanzaboote&lt;/a>, UKIs, &lt;a href="https://github.com/NixOS/rfcs/blob/master/rfcs/0125-bootspec.md">NixOS Bootspec&lt;/a>, &lt;a href="https://github.com/nikstur/userborn">userborn&lt;/a>, &lt;a href="https://github.com/cloud-gouv/securix">Sécurix&lt;/a>&lt;/li>
+&lt;li>Canonical: Ubuntu Core, snaps, foundations/bootloader/package management&lt;/li>
+&lt;li>Freedesktop-sdk&lt;/li>
+&lt;li>Buildstream&lt;/li>
+&lt;li>GNOME OS&lt;/li>
+&lt;li>Arch Linux: sbctl/go-uefi, signstar(os), mkinitcpio, arch-install-scripts, devtools, buildbtw / vmexec, voa&lt;/li>
+&lt;li>Meta (image builders)&lt;/li>
+&lt;li>IncusOS/HypervisorOS&lt;/li>
+&lt;/ul>
+&lt;h2 id="summary-of-last-years-progress">Summary of Last Year’s Progress&lt;a class="anchor" href="#summary-of-last-years-progress">#&lt;/a>&lt;/h2>
+&lt;ul>
+&lt;li>Sysupdate + sysinstall&lt;/li>
+&lt;li>Building amutable OS implementing everything for real and smashing against reality&lt;/li>
+&lt;li>Tine for building systems
+&lt;ul>
+&lt;li>Amutable had image builder but not build system&lt;/li>
+&lt;li>Build tine to do both&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>NixOS
+&lt;ul>
+&lt;li>Pcrlock support added to Lanzaboote — Measured Boot is now easy to use on NixOS&lt;/li>
+&lt;li>Systemd initramfs enabled by default&lt;/li>
+&lt;li>Removing all the patches in systemd (20+ in the past → down to 4)&lt;/li>
+&lt;li>Added support for account-utils&lt;/li>
+&lt;li>Nix-based dev environment for systemd&lt;/li>
+&lt;li>Nightly tests for newest commit from systemd master for our (80+) VM test suite&lt;/li>
+&lt;li>Enabled many more Varlink APIs&lt;/li>
+&lt;li>WIP: Adopt Varlink in the core parts of NixOS
+&lt;ul>
+&lt;li>WIP: used in switch-to-configuration (a poor man’s soft reboot)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>WIP: Firmware attributes management
+&lt;ul>
+&lt;li>Userspace API to manage vtd, iommu, etc, firmware features&lt;/li>
+&lt;li>Implemented by lenovo/dell/HP&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>MicroOS
+&lt;ul>
+&lt;li>OCI images support for updating microos optional available&lt;/li>
+&lt;li>Full sysext integration in OBS and transactional-update&lt;/li>
+&lt;li>Images will be built with mkosi instead of kiwi&lt;/li>
+&lt;li>Moved to sd-boot only, removed grub-bls, sles 16 will follow&lt;/li>
+&lt;li>Glib uapi config spec support for usr -&amp;gt; etc -&amp;gt; run (&lt;a href="https://docs.gtk.org/glib/method.KeyFile.load_unix_configurations.html">https://docs.gtk.org/glib/method.KeyFile.load_unix_configurations.html&lt;/a>)&lt;/li>
+&lt;li>WIP: fido2 + tpm2 at the same time&lt;/li>
+&lt;li>WIP: improving sd-boot UX&lt;/li>
+&lt;li>WIP: integrating UKI with brtfs snapshots&lt;/li>
+&lt;li>MicroOS switched to pcrlock-only, dropping support of pcr-oracle (signed policy)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Archlinux
+&lt;ul>
+&lt;li>Work on VOA adoption
+&lt;ul>
+&lt;li>WIP: &lt;a href="https://gitlab.archlinux.org/archlinux/alpm/voa/-/work_items/20">Web of Trust support for OpenPGP&lt;/a>&lt;/li>
+&lt;li>WIP: &lt;a href="https://gitlab.archlinux.org/archlinux/alpm/voa/-/work_items/24">Signify as crypto backend&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>mkinitcpio &lt;a href="https://lists.archlinux.org/archives/list/arch-dev-public@lists.archlinux.org/message/S2G5NU4YD7OL7TIGLN4GCV2T6F4RUPBJ/">defaults to systemd initramfs&lt;/a> now&lt;/li>
+&lt;li>WIP: Boot standardization and bootchain package &lt;a href="https://gitlab.archlinux.org/archlinux/rfcs/-/merge_requests/66">RFC&lt;/a>&lt;/li>
+&lt;li>Further work on &lt;a href="https://gitlab.archlinux.org/archlinux/signstar-os">Signstar OS&lt;/a> (Arch Linux based, image-based OS, built using mkosi) based on &lt;a href="https://gitlab.archlinux.org/archlinux/signstar">Signstar&lt;/a> tooling&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Canonical
+&lt;ul>
+&lt;li>Hybrid images (UKI + normal rootfs) for UEFI&lt;/li>
+&lt;li>Stubble for UKI stub, for better arm64 consumer devices&lt;/li>
+&lt;li>Database of arm64 hwids also merged into sd-stub, kept in sync with stubble&lt;/li>
+&lt;li>Verifies root of trust (amd/intel) during installation to see if the system is in a sensible state (iommu/root of trust/TPM state)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Flatcar
+&lt;ul>
+&lt;li>Switched to confexts, found some pain points (also for sysexts)&lt;/li>
+&lt;li>Sysupdate also found pain points&lt;/li>
+&lt;li>Onboarded to AKS (azure kubernetes), resulting in Azure Container Linux (Flatcar downstream)&lt;/li>
+&lt;li>Many patches shipped in rapid update cadence due to Ai security boom&lt;/li>
+&lt;li>WIP: moving to mkosi, adding gentoo support&lt;/li>
+&lt;li>Shipping signed sysexts by default&lt;/li>
+&lt;li>“Sysext bakery” for 3rd party images builds and deployments&lt;/li>
+&lt;li>Nvidia driver sysext&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>GNOME OS
+&lt;ul>
+&lt;li>Added mutable confext for /etc/ shipping default config in the os&lt;/li>
+&lt;li>‘Safe mode’ UKI profile that disables sysext
+&lt;ul>
+&lt;li>Lots of fun due to nvidia drivers support&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>WIP moving to mkosi:
+&lt;ul>
+&lt;li>bootable iso support upstreamed&lt;/li>
+&lt;li>Image boots, ship it!&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Zswap used through loopdev
+&lt;ul>
+&lt;li>There is now a new functionality that allows it without writeback to the fs&lt;/li>
+&lt;li>Loop device to avoid allocating the whole thing, create new empty thing on every boot and use loopdev on top of it&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Brtfs replace used in installer implemented via repart&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>systemd STF
+&lt;ul>
+&lt;li>Sysinstall work + ongoing development of new GNOME GUI installer&lt;/li>
+&lt;li>Integrating homed with GNOME: basic support mostly landed, secure lock support not far behind&lt;/li>
+&lt;li>Sparse allocation support to the kernel for block stuff&lt;/li>
+&lt;li>WIP for stable/nightly channels support for sysupdate&lt;/li>
+&lt;li>sysupdate: support for delta downloads, fetching only changed chunks
+&lt;ul>
+&lt;li>Erofs images without fragment flag (actual flags: -E fragments,fragdedupe=inode)&lt;/li>
+&lt;li>Algorithm does chunking in fixed sizes, works thanks to erofs padding&lt;/li>
+&lt;li>Experiments show 90% reuse&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>sysupdate: Redesign for pluggable download backends&lt;/li>
+&lt;li>sysupdate: Separated download from apply steps&lt;/li>
+&lt;li>sysupdate: Ongoing Varlink impl. Once done we’ll drop sysupdated/dbus API&lt;/li>
+&lt;li>homed: Ongoing change to key hierarchy so that we can derive extra keys =&amp;gt; will be plumbed into org.freedesktop.Secrets&lt;/li>
+&lt;li>Some plumbing for skipping recovery key prompt and redirecting boot somewhere else (GNOME OS will use this for a more featureful TPM recovery UI)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Ubuntu
+&lt;ul>
+&lt;li>512 packages that were using system users/groups manually via postinst useradd/groupadd converted to systemd-sysusers
+&lt;ul>
+&lt;li>Just missing avahi/sane-utils in terms of default GNOME install to be fully hermetic-usr supported&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://salsa.debian.org/-/snippets/863">gitlab snippet with tracker&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>IncusOS
+&lt;ul>
+&lt;li>New project, now has users/customers&lt;/li>
+&lt;li>Uses mkosi for images&lt;/li>
+&lt;li>Initrd wipes everything that it doesn’t know on boot from the rootfs, to ensure it always boot to known good state&lt;/li>
+&lt;li>API for config mgmt demon&lt;/li>
+&lt;li>Factory reset support&lt;/li>
+&lt;li>Reinstall/Backup support&lt;/li>
+&lt;li>Recovery disk, including safety against downgrade attacks&lt;/li>
+&lt;li>UKI with multiple profile&lt;/li>
+&lt;li>Pain due to debian stable as base, old systemd (and everything else), might switch to upstream packages published on OBS&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Fwupd
+&lt;ul>
+&lt;li>There’s a built-in hook for pcrlock to exclude HW PCRs at upgrade time&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>KDELinux
+&lt;ul>
+&lt;li>New initiative with the idea to use reuse same base as GNOMEOS but in KDE world (freedesktop-sdk/BuildStream)&lt;/li>
+&lt;li>Idea is to share tech and infrastructure with GNOMEOS as much as possible (include systemd-sysupdate / security etc)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="topics">Topics&lt;a class="anchor" href="#topics">#&lt;/a>&lt;/h1>
+&lt;ul>
+&lt;li>Maturity levels for systemd subsystems (e.g. nsresourced, etc.) for distribution adoption/promotion?
+&lt;ul>
+&lt;li>Unclear when things are “ready” for production&lt;/li>
+&lt;li>“Experimental” tag for components
+&lt;ul>
+&lt;li>D-Bus now has annotation for “experimental” API in the spec&lt;/li>
+&lt;li>Intention to do the same for Varlink&lt;/li>
+&lt;li>Manpages also supports tags for component or individual feature&lt;/li>
+&lt;li>Meson tag for individual component&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>API vs component stability&lt;/li>
+&lt;li>For backport we don’t make this distinction, based on bug severity&lt;/li>
+&lt;li>All of these should provide a hint, but with the understanding that it is a hint, not a hard promise&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Alternative to PE as boot image container format, ie no EFI
+&lt;ul>
+&lt;li>Embedded linux has issues&lt;/li>
+&lt;li>U-boot uses FIT image (flattened image tree, a device-tree derivation)&lt;/li>
+&lt;li>But PE is so simple! Just do it! (™)
+&lt;ul>
+&lt;li>Authenticode is not bad, not great&lt;/li>
+&lt;li>Openssl does the heavy lifting, X.509 ecosystem is well supported if not pretty&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Someone implemented reading &lt;a href="https://github.com/nkraetzschmar/bootloader">PE from some bootloader in MBR&lt;/a> and presented at ASG 2025
+&lt;ul>
+&lt;li>ASG talk: &lt;a href="https://www.youtube.com/watch?v=x5vKCc8fVJI">“One Boot Config to Rule Them All: Bringing UAPI Boot Specification to Legacy BIOS”&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Kernel in a UKI is callable in “classic bios” mode (ie, avoid EFI stub/entry point)&lt;/li>
+&lt;li>U-boot has UEFI support, it’s spaghetti all the way down&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>BLI as UAPI spec? What for non-EFI systems. A file in the ESP? Extras in loader.conf?
+&lt;ul>
+&lt;li>s390x/ppc have completely different bootchains/bootloaders&lt;/li>
+&lt;li>Needs a champion to do the actual work&lt;/li>
+&lt;li>Not all variables should be part of the spec, as they are specific to sd-boot
+&lt;ul>
+&lt;li>Needs to be discussed var-by-var with s390/ppc devs&lt;/li>
+&lt;li>Majority seems to be generic enough, but content also can be different&lt;/li>
+&lt;li>E.g.: what is an “ID”? Value not well defined, changes by implementation&lt;/li>
+&lt;li>Would be good to clarify in spec&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Grub supports BLI, but has some issues on non-x86&lt;/li>
+&lt;li>Systemd spec is not up to date, there are new vars that sd-boot/stub use&lt;/li>
+&lt;li>Device trees and EFI vars are very different, maybe needs to be a different spec&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Graphical systemd-boot?
+&lt;ul>
+&lt;li>Feedback for users when rollbacks need to be selected is that the GUI could use colors or emojis&lt;/li>
+&lt;li>Separate component that has fancy graphic?&lt;/li>
+&lt;li>Hi DPI screens have a lot of issues&lt;/li>
+&lt;li>Use EFI protocols to implement a terminal emulator&lt;/li>
+&lt;li>APIs for blessing boots available to make a better job from the OS of selecting rollbacks&lt;/li>
+&lt;li>Text stuff should really be improved regardless, as often it’s hard to read, with the pager and so on&lt;/li>
+&lt;li>Link to &lt;a href="https://github.com/systemd/systemd/pull/43110">SUSE systemd-boot sub-menu PR&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://gitlab.gnome.org/Teams/Design/os-mockups/-/blob/master/boot/boot-menu.png?ref_type=heads">GNOME mockups&lt;/a>&lt;/li>
+&lt;li>Accessibility story? Non existent
+&lt;ul>
+&lt;li>We beep!&lt;/li>
+&lt;li>Absent anything else, even MORSE code would be better than nothing&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>GNOMEOS has discussed ‘recovery’ known-good partition that has functioning speech synthesis etc.
+&lt;ul>
+&lt;li>But it means this code gets out of date, security issues&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Could GNOME show the boot menu?
+&lt;ul>
+&lt;li>If TPM fails to unlock redirect to another target to recover&lt;/li>
+&lt;li>Then users can select next boot from there&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Kmscon also available
+&lt;ul>
+&lt;li>BUT NO EMOJIIS!!! 😭😭😿&lt;/li>
+&lt;li>No, it has emojis?? 🚀🎉&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Conclusion: do it from the OS&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Signing of DDIs/Kernel keyring&lt;/li>
+&lt;li>tofu model for authenticating resources in sd-stub&lt;/li>
+&lt;li>dm-verity keyring deep-dive: trust relationships and mechanisms for key injection
+&lt;ul>
+&lt;li>Amutable have their own key as usual but want to let users to enroll their own keys on top, eg for confexts&lt;/li>
+&lt;li>How to enroll? - i.e. how do trusted keys securely reach the node?&lt;/li>
+&lt;li>Kernel now has a separate dm-verity keyring that is filled at boot and then locked
+&lt;ul>
+&lt;li>Support for systemd WIP&lt;/li>
+&lt;li>Keyring set-up would be useful if it could be fully sealed (ie: no new keys at all)&lt;/li>
+&lt;li>Current implementation allows new keys signed by existing keys&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>TOFU-style enrollment of keys
+&lt;ul>
+&lt;li>Users get golden image and modify it to add their keys&lt;/li>
+&lt;li>On first boot untrusted stuff is accepted&lt;/li>
+&lt;li>Sd-stub looks for addons, those that don’t authenticate are collected and stores their hashes in a protected EFI var (that can’t be modified by userspace) - or a file on the ESP?&lt;/li>
+&lt;li>Make it opt-in via UKI profile metadata, consumed by userspace later&lt;/li>
+&lt;li>UKI metadata may also be used for kernel command line, DeviceTree and similar customisations (down the road, possible but not implemented)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Problem: key revocation is not part of that concept yet&lt;/li>
+&lt;li>GNOMEOS builds everything first, then signs everything later
+&lt;ul>
+&lt;li>WIP patch to add new keyring called “.vendor” with keys that shim trusts, and UKIs can carry new keys in a new section that get added to this keyring&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>MOK manager, separate EFI binary to do enrollment of keys
+&lt;ul>
+&lt;li>Can we have a better GUI?&lt;/li>
+&lt;li>Maybe add new menu item creates new key and hands it to userspace, that would never leave the initrd, and then from the initrd it can be used to sign stuff to pass back to the UEFI mode
+&lt;ul>
+&lt;li>Key stored in boot-only EFI var, or EFI config table (ephemeral)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Goes back to the idea of having a fancy userspace that can do better UI/UX than a bootloader, and jump back to UEFI&lt;/li>
+&lt;li>Can TOFU substitute MOK?&lt;/li>
+&lt;li>Installer GUI selects to reboot into the special env that can access to the secret TOFU key, that env boots and enrolls via the hmac, then reboot again&lt;/li>
+&lt;li>The special env needs to prompt the local user and do all the needed checks&lt;/li>
+&lt;li>Regenerate the key when it is used&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>UEFI measures every key (some key?) used via LoadImage&lt;/li>
+&lt;li>Conditional MOK variable: only add key if it is scoped to the “thing” being booted
+&lt;ul>
+&lt;li>E.g. enroll nVidia drivers only for Fedora OSes&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Learnings about TPM2 firmware quality at scale for measured boot adoption?
+&lt;ul>
+&lt;li>Eg: quirks hwdb about specific feature&lt;/li>
+&lt;li>Already has entry for TPMs&lt;/li>
+&lt;li>But thing change (eg: fw updates)&lt;/li>
+&lt;li>Better to auto-detect problems at boot&lt;/li>
+&lt;li>Add journal specific for bug triaging
+&lt;ul>
+&lt;li>It’s called&amp;hellip; The journal!&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>We have the journal catalog too for fancy messages&lt;/li>
+&lt;li>Ensure the entry has all the needed data already so it’s easy for users to extract and report&lt;/li>
+&lt;li>Test suite in the installer to verify how a system behaves as it is installed, to avoid installing a broken system&lt;/li>
+&lt;li>Tie it up in systemd-analyze or so, to have a well-formatted report that users can send easily without having to dig manually for parts&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Sysexts: unified approach for OS overlays for immutable image-bases Linux
+&lt;ul>
+&lt;li>Root vs. individual directories (etc, opt, usr - what about var and others)&lt;/li>
+&lt;li>Balancing distro vendor vs operator needs&lt;/li>
+&lt;li>Node specific “ephemeral” overlays rendered at boot, snapshotting, etc.&lt;/li>
+&lt;li>Nixos has automatic provision of data on first boot (sql, etc.)&lt;/li>
+&lt;li>Customer want to ship an entire overlay in a single entity that covers the entire system&lt;/li>
+&lt;li>UAPI FS spec assigns very precise semantics to the parts of the hierarchy, and this wires into features like firstboot, factory-reset, etc&lt;/li>
+&lt;li>Ownership: sysext is owned by distro, confext is for operators&lt;/li>
+&lt;li>Expand Mstack feature to allow booting from it, which allows to do a full set of overlay layers, also supports bind mounts&lt;/li>
+&lt;li>Confext is not sysext and is not varext and won’t be rootext, do not want to lose well-defined semantics and atomicity&lt;/li>
+&lt;li>Use case provides OS plus a set of OS-vendor owned sysexts, customer adds more layer on top of that&lt;/li>
+&lt;li>Can also ship filesystems snapshots to provide pre-provisioned state&lt;/li>
+&lt;li>UAPI specs should be more verbose on the semantics of these components&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Sysupdate now supports multiplexing out to varlink, can update sysext/confext and auto refresh them
+&lt;ul>
+&lt;li>Add also notification support via varlink to sysext/confext themselves&lt;/li>
+&lt;li>But always prefer StateDirectory= RuntimeDirectory= and friends
+&lt;ul>
+&lt;li>Currently if a unit is gone (service file deleted, systemd daemon-reload) we lose track, should be fixed so that a stub is kept behind for later cleanups&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Currently BindPaths= does not support id-mapping, could be added&lt;/li>
+&lt;li>Could remove /var/lib/private/ and use foreign UIDs range to protect content instead&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>external UKI profiles?
+&lt;ul>
+&lt;li>Cmdline specific snapshot&lt;/li>
+&lt;li>Mix type1 and type2 to solve it&lt;/li>
+&lt;li>bootctl link/unlink creates t1 entry from t2 entry
+&lt;ul>
+&lt;li>Only combines references, does not create new config&lt;/li>
+&lt;li>Profile field added as supported part of this&lt;/li>
+&lt;li>Takes uki plus secondary components as input&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>bootctl link-auto
+&lt;ul>
+&lt;li>Supports .v directory in usr|var with the kernel and the rest, picks up all content&lt;/li>
+&lt;li>Hooked up to varlink notification of sysupdate&lt;/li>
+&lt;li>Opposed to kernel-install, which generates stuff locally and has plugins&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>kernel-install future
+&lt;ul>
+&lt;li>See bootctl link as a replacement&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>VOA all the things
+&lt;ul>
+&lt;li>Adoption and standardization of &lt;a href="https://voa.archlinux.page/config/voa.5.html">dedicated configuration file format&lt;/a> for policy enforcement
+&lt;ul>
+&lt;li>Proposal: once the 2nd consumer (in terms of a backend, e.g. X509), let’s standardize something&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Extending the specification: X509/CMS/PKCS#7, signify&lt;/li>
+&lt;li>Adding further backends to &lt;a href="https://voa.archlinux.page/">reference implementation&lt;/a> (X509/CMS/PKCS#7, signify)&lt;/li>
+&lt;li>Use of Rust-based reference implementation in C-based projects&lt;/li>
+&lt;li>Openpgp can have many options
+&lt;ul>
+&lt;li>Can have multiple layers and trust anchors&lt;/li>
+&lt;li>can be pinned by fingerprints,&lt;/li>
+&lt;li>WoT: describe what the roots are, how many levels to allow&lt;/li>
+&lt;li>Need a policy enforcement on top of all of this, X.509 embeds this in the certs themselves&lt;/li>
+&lt;li>Metadata mostly specific to consumer of the data&lt;/li>
+&lt;li>Openpgp does not support embedded a lot of this into the format&lt;/li>
+&lt;li>End users want to customize some of these parameters&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Systemd VOA parser is generic&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>pcrlock: support more than 8 variants (PolicyOR limitation)
+&lt;ul>
+&lt;li>Answer: yes please&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>more granular UKI cmdline options
+&lt;ul>
+&lt;li>Use case: user has a problem, support tells user to enable X Y Z options&lt;/li>
+&lt;li>Answer: bootctl link to pick the right combination, pre-prepare the various individual components&lt;/li>
+&lt;li>Enhance sd-boot to select addons from available superset
+&lt;ul>
+&lt;li>And also to disable a specific addon&lt;/li>
+&lt;li>All ephemeral for the next boot&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Figure out a way to safely do developer mode (as Android, etc)
+&lt;ul>
+&lt;li>Needs some hard thinking as it’s not trivial problem in detail&lt;/li>
+&lt;li>Different developer modes? One that you can enter/exit freely, one that requires wipe-on-enter, one that requires wipe-on-exit? Turn off IPE or enroll self-signed keys? Turn off NNP? Shell access? etc etc etc&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>NNP (NoNewPrivs) and containers: scoped, filtered by cgroup labels. BPF magic enforces on “good” (labelled) containers; “bad” containers that don’t run with this can be excluded.
+&lt;ul>
+&lt;li>SUSE has a presentation on this at ASG this year&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>WIP: pty broker PR
+&lt;ul>
+&lt;li>Get a pty and connect to a container&lt;/li>
+&lt;li>Can also open a shell in the background&lt;/li>
+&lt;li>Asks precise policy questions&lt;/li>
+&lt;li>run0 moved to this for the simple use cases
+&lt;ul>
+&lt;li>See also &lt;a href="https://build.opensuse.org/package/show/openSUSE:Factory/fudo">https://build.opensuse.org/package/show/openSUSE:Factory/fudo&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;a href="https://github.com/systemd/systemd/issues/15292">Journald on mmc&lt;/a>
+&lt;ul>
+&lt;li>iops are the problem&lt;/li>
+&lt;li>Duplicate journal: full fat journal to /run/, filtered to /var/, even per-unit (via cgroup xattr or/and priority filtering)&lt;/li>
+&lt;li>Glob for log element in the cgroup xattr&lt;/li>
+&lt;li>Let the kernel coalesce more by having iouring do the writes instead of doing manually&lt;/li>
+&lt;li>Switch away from mmap writes
+&lt;ul>
+&lt;li>Journald uses mmap writing because the docs said it was undefined behaviour to mix mmap read and pwrite/iouring, but that is no longer the case&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Log namespace already exists that runs a completely separate and independent journald instance, units can use this&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>pcrlock: for A/B booted system (atomic updates)
+&lt;ul>
+&lt;li>Not very atomic (ESP + nv index)
+&lt;ul>
+&lt;li>Writes the policy first, then the nvpcr, as the first by itself has no functional implication&lt;/li>
+&lt;li>But if nv index is written and esp is not, also hard failure&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>If pcrlock runs without the ESP then booting fails&lt;/li>
+&lt;li>Could keep both old/new policies around as fallback&lt;/li>
+&lt;li>Pcrlock locks to as many pcrs as possible, including PCR12 which is where creds are measured to, including the pcrlock policy itself&lt;/li>
+&lt;li>Special case it, and have sd-stub load it from the esp into an EFI var?
+&lt;ul>
+&lt;li>Special casing sucks&lt;/li>
+&lt;li>But it is a special case&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Another atomicity hole: migrating from normal pcr -&amp;gt; pcrlock during a system update&lt;/li>
+&lt;li>Communicate which LUKS slot unlocked the disk
+&lt;ul>
+&lt;li>Lennart thinks we have logic to measure what unlock method is used (“tpm” vs “password” …), including the slot number itself&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>sysinstall for other OSes?
+&lt;ul>
+&lt;li>Amutable uses it for headless installs&lt;/li>
+&lt;li>GNOMEOS for the GUI installer&lt;/li>
+&lt;li>What requirements do others have?&lt;/li>
+&lt;li>NIX needs installer for corp env, talking to some remote server
+&lt;ul>
+&lt;li>System is customized and provisioned depending on the user + hardware&lt;/li>
+&lt;li>Are other people interested in sharing these services/components?&lt;/li>
+&lt;li>Specifically
+&lt;ul>
+&lt;li>Enrollment&lt;/li>
+&lt;li>OIDC auth&lt;/li>
+&lt;li>Factory reset&lt;/li>
+&lt;li>FIDO configuration&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Update client pulls updates (NixOS config) from the server, which keeps track of clients, has mutable and immutable use cases&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Windows Autopilot does the same
+&lt;ul>
+&lt;li>Machine is authenticated via tpm&lt;/li>
+&lt;li>Log in with OIDC&lt;/li>
+&lt;li>Customized based on user/org settings&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>What Amutable does currently
+&lt;ul>
+&lt;li>Machine boots empty&lt;/li>
+&lt;li>Machine does IMDS&lt;/li>
+&lt;li>Machine sends reports (contains TPM, CoCo signatures, etc) (Enrolls w/ Orchestrator)&lt;/li>
+&lt;li>Orchestrator pushes down configuration (including maybe features in sysupdate)&lt;/li>
+&lt;li>(Some features should be controlled locally: Nvidia hardware, detect cloud =&amp;gt; install agent, etc)&lt;/li>
+&lt;li>Report contains PCRs and quotes, confext locks against them, so machine can only use them if the machine is in the same state&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>no brute force make-policy / predict (slow)
+&lt;ul>
+&lt;li>Algo is bruteforcing to do all the possible combinations which is slow&lt;/li>
+&lt;li>Predicts what is going to fail and skips it&lt;/li>
+&lt;li>Combinatorial explosion even with only 3 snapshots&lt;/li>
+&lt;li>Calls make-policy twice&lt;/li>
+&lt;li>Tries hard to keep all PCRs locked&lt;/li>
+&lt;li>1 minute enrolment in a constrained VM&lt;/li>
+&lt;li>PCR15 extended with hash of volume key, so a service can abort switchroot
+&lt;ul>
+&lt;li>PCR15 can be wrong as for example a new device can be added&lt;/li>
+&lt;li>User faces scary alert&lt;/li>
+&lt;li>Need a way to bypass and continue boot after manually checking&lt;/li>
+&lt;li>In a user friendly way&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>PCR15 should not measure all keys, but the identity of the system, which is why it measures the rootfs volume key&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h1 id="action-items">Action Items&lt;a class="anchor" href="#action-items">#&lt;/a>&lt;/h1>
+&lt;ul>
+&lt;li>Add notification support via varlink to systemd-sysext for merging / un-merging sysext/confext. Currently, only systemd-sysupdate supports this.&lt;/li>
+&lt;li>Handle StateDirectory= RuntimeDirectory= and friends for unit files that “disappear” (service file deleted, systemd daemon-reload). Currently if a unit is gone we lose track, should be fixed so that a stub is kept behind for later cleanups.&lt;/li>
+&lt;li>pcrlock: support more than 8 variants (PolicyOR limitation)&lt;/li>
+&lt;li>Think about what knobs should exist for a “developer mode”, what guarantees can we give afterwards, etc&lt;/li>
+&lt;/ul></description></item></channel></rss>
