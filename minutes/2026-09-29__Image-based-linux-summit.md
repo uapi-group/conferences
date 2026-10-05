@@ -166,6 +166,7 @@
   * Kmscon also available
     * BUT NO EMOJIIS!!! 😭😭😿
     * No, it has emojis?? 🚀🎉
+      ![kmscon running emacs with emojis](images/fedora-rawhide-kmscon-emacs.png)
   * Conclusion: do it from the OS
 * Signing of DDIs/Kernel keyring
 * tofu model for authenticating resources in sd-stub
